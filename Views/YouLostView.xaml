@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="theHangedManWpf.Views.YouLostView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:theHangedManWpf.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+            <TextBox Text="YOU LOST GAME :("
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     FontSize="50"
+                     Foreground="Red"
+                     Background="Transparent"
+                     BorderBrush="Transparent"
+                     FontWeight="Bold"/>
+
+            <TextBlock Text="The guessed word was"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     FontSize="30"
+                     Foreground="DimGray"
+                     Background="Transparent"
+                     FontWeight="Bold"
+                     Margin="0,20,0,0"/>
+
+            <TextBlock Text="{Binding Path=YourNotGuessedWord, Mode=OneWay}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     FontSize="40"
+                     Foreground="Black"
+                     Background="Transparent"
+                     FontWeight="Bold"
+                     Margin="0,20,0,40"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Content="New game as a new player"
+                        Margin="0,20,10,0"/>
+                
+                <Button Content="New Game as the same player"
+                        Margin="0,20,10,0"/>
+                
+                <Button Content="Quit game"
+                        Command="{Binding Path=QuitGameCommand}"
+                        Margin="0,20,10,0"/>
+            </StackPanel>
+        </StackPanel>
+  
+            
+    </Grid>
+</UserControl>

@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="theHangedManWpf.Views.GameMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:theHangedManWpf.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+
+    <UserControl.Resources>
+        <Style x:Key="TitleTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="55"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+        <Style x:Key="DifficultyRadioButton" TargetType="RadioButton">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#305acf"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical"
+                    Margin="10"
+                    Grid.ColumnSpan="2">
+            <TextBlock Text="The"
+                       Style="{StaticResource TitleTextBlock}"
+                       Margin="70,0,0,0"/>
+            <TextBlock Text="Hanged"
+                       Style="{StaticResource TitleTextBlock}"
+                        Margin="140,0,0,0"/>
+            <TextBlock Text="Man"
+                       Style="{StaticResource TitleTextBlock}"
+                       Margin="280,0,0,0"/>
+        </StackPanel>
+
+        <Image Source="../Images/hangedMan.JPG"
+               Grid.RowSpan="2"
+               Width="130"
+               Height="180"
+               Margin="40,180,140,10"/>
+
+        <StackPanel Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+            <Border BorderBrush="#305acf"
+                    BorderThickness="2"
+                    HorizontalAlignment="Left"
+                    Width="250"
+                    CornerRadius="25">
+                <Label FontWeight="Bold"
+                   FontSize="28"
+                   Foreground="#305acf"
+                   Padding="6">Change difficulty</Label>
+            </Border>
+            <RadioButton IsChecked="True"
+                         Command="{Binding DifficultyCommand}"
+                         Name="EasyRadioButton"
+                         CommandParameter="Easy"
+                         Style="{StaticResource DifficultyRadioButton}">Easy</RadioButton>
+            <RadioButton Name="MediumRadioButton"
+                         CommandParameter="Medium"
+                         Command="{Binding DifficultyCommand}"
+                         Style="{StaticResource DifficultyRadioButton}">Medium</RadioButton>
+            <RadioButton Name="HardRadioButton"
+                         Command="{Binding DifficultyCommand}"
+                         CommandParameter="Hard"
+                         Style="{StaticResource DifficultyRadioButton}">Hard</RadioButton>
+        </StackPanel>
+
+        <Border BorderBrush="#305acf" 
+                BorderThickness="2" 
+                CornerRadius="35"
+                HorizontalAlignment="Right"
+                Grid.Column="1"
+                Height="450"
+                Grid.RowSpan="2"
+                Margin="0,15,30,0">
+            <StackPanel Orientation="Vertical" 
+                        Width="120" Height="290">
+                <!-- Image-->
+                <Image Source="../Images/image6.png"
+                       Width="90" 
+                       Height="110"
+                       Margin="0,0,30,0"/>
+
+                <!-- Buttons -->
+                <Button Content="Play" 
+                        Command="{Binding Path=PlayGameCommand}"
+                        Margin="10"/>
+                <Button Content="High Scores" 
+                        Command="{Binding Path=HighScoresCommand}"
+                        Margin="10"/>
+                <Button Content="Rules of game" 
+                        Margin="10"/>
+                <Button Content="Exit" 
+                        Command="{Binding Path=QuickCommand}"
+                        Margin="10"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

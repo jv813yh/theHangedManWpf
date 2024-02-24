@@ -1,0 +1,51 @@
+﻿<Window x:Class="theHangedManWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:theHangedManWpf" 
+        xmlns:views="clr-namespace:theHangedManWpf.Views"
+        xmlns:vms="clr-namespace:theHangedManWpf.ViewModels"
+        mc:Ignorable="d"
+        
+        
+        Title="The Hanged Man" 
+        Height="500" Width="700"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        MouseDown="MainWindowMouseDown"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:GameMenuViewModel}">
+                <views:GameMenuView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LetsPlayViewModel}">
+                <views:EntrerYourNicknameView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:PlayingGameViewModel}">
+                <views:GameView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:HighScoresViewModel}">
+                <views:HighScoresView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:YouLostViewModel}">
+                <views:YouLostView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Border CornerRadius="10" Grid.RowSpan="2">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#7be9f6" Offset="0.0"/>
+                    <GradientStop Color="#f083da" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</Window>
