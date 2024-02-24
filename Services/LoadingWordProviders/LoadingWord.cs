@@ -34,7 +34,7 @@ namespace theHangedManWpf.Services.LoadingWordProviders
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Error reading file", "Error",
+                    MessageBox.Show($"Error reading file\nPlease, check if it is in the bin folder file {_connectionString}", "Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

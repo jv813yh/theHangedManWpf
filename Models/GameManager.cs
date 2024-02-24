@@ -7,22 +7,19 @@ namespace theHangedManWpf.Models
 {
     public class GameManager
     {
-        private readonly ILoadingWord _loadingWord;
-
-        public NavigationStore NavigationStore { get; set; }
         public Game CurrentGame { get; set; }
+
+        private readonly ILoadingWord _loadingWord;
         public Dictionary<int, string> GuessingWordsDictionary { get; set; }
 
-        public GameManager(ILoadingWord loadingWord, NavigationStore navigationStore) 
+        public GameManager(ILoadingWord loadingWord) 
         {
             _loadingWord = loadingWord;
-
-            NavigationStore = navigationStore;
         }
 
-        public static GameManager CreatingGameManager(ILoadingWord loadingWord, NavigationStore navigationStore)
+        public static GameManager CreatingGameManager(ILoadingWord loadingWord)
         {
-            GameManager gameManagerReturn = new GameManager(loadingWord, navigationStore);
+            GameManager gameManagerReturn = new GameManager(loadingWord);
 
             gameManagerReturn.LoadingWords();
             gameManagerReturn.StartNewGame();

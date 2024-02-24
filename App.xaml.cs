@@ -16,22 +16,28 @@ namespace theHangedManWpf
         private readonly string _connectionString = "inputWords.txt";
 
         private readonly GameManager _gameManager;
+        private readonly CreateViewModelsService _gameService;
+        private readonly NavigationStore _navigationStore;
 
         public App()
         {
-            _gameManager = GameManager.CreatingGameManager(new LoadingWord(_connectionString), new NavigationStore());
+            _navigationStore = new NavigationStore();
+
+            _gameManager = GameManager.CreatingGameManager(new LoadingWord(_connectionString));
+
+            _gameService = new CreateViewModelsService(_gameManager, _navigationStore);
         }
 
 
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            _gameManager.NavigationStore.CurrentViewModel = CreateGameMenuViewModel();
+            _navigationStore.CurrentViewModel = _gameService.CreateGameMenuViewModel();
 
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_gameManager.NavigationStore)
+                DataContext = new MainViewModel(_navigationStore)
             };
 
             MainWindow.Show();
@@ -46,6 +52,7 @@ namespace theHangedManWpf
         /// ///////MOZNO PRESUNUT DO GAMEMANAGERA ???? //////////////////////////////////
 
 
+        /*
         private GameMenuViewModel CreateGameMenuViewModel() 
             => new GameMenuViewModel(new NavigationService(_gameManager.NavigationStore, CreateLetsPlayViewModel), _gameManager);
 
@@ -60,5 +67,7 @@ namespace theHangedManWpf
             => new HighScoresViewModel(_gameManager);
         private YouLostViewModel CreateYouLostViewModel()
             => new YouLostViewModel(_gameManager);
+
+        */
     }
 }
