@@ -15,24 +15,21 @@ namespace theHangedManWpf
     {
         private readonly string _connectionString = "inputWords.txt";
 
-        private readonly GameManager _gameManager;
-        private readonly CreateViewModelsService _gameService;
         private readonly NavigationStore _navigationStore;
+        private readonly GameManager _gameManager;
+       
 
         public App()
         {
             _navigationStore = new NavigationStore();
-
             _gameManager = GameManager.CreatingGameManager(new LoadingWord(_connectionString));
-
-            _gameService = new CreateViewModelsService(_gameManager, _navigationStore);
         }
 
 
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            _navigationStore.CurrentViewModel = _gameService.CreateGameMenuViewModel();
+            _navigationStore.CurrentViewModel = CreateGameMenuViewModel();
 
 
             MainWindow = new MainWindow()
@@ -47,27 +44,25 @@ namespace theHangedManWpf
         }
 
 
-
-        /// ///////MOZNO PRESUNUT DO GAMEMANAGERA ???? ////////////////////////////////// 
-        /// ///////MOZNO PRESUNUT DO GAMEMANAGERA ???? //////////////////////////////////
-
-
         /*
-        private GameMenuViewModel CreateGameMenuViewModel() 
-            => new GameMenuViewModel(new NavigationService(_gameManager.NavigationStore, CreateLetsPlayViewModel), _gameManager);
+         * Maybe a better solution is to include it in a special class, 
+         * for now in this version I keep it in the App class
+         */
+        public GameMenuViewModel CreateGameMenuViewModel()
+         => new GameMenuViewModel(new NavigationService(_navigationStore, CreateLetsPlayViewModel), _gameManager);
 
-        private LetsPlayViewModel CreateLetsPlayViewModel() 
-            => new LetsPlayViewModel(new NavigationService(_gameManager.NavigationStore, CreatePlayingGameViewModel) , _gameManager);
+        public LetsPlayViewModel CreateLetsPlayViewModel()
+            => new LetsPlayViewModel(new NavigationService(_navigationStore, CreatePlayingGameViewModel), _gameManager);
 
-        private PlayingGameViewModel CreatePlayingGameViewModel()
-            => new PlayingGameViewModel(_gameManager, new NavigationService(_gameManager.NavigationStore, CreateHighScoresViewModel),
-                new NavigationService(_gameManager.NavigationStore, CreateYouLostViewModel));
+        public PlayingGameViewModel CreatePlayingGameViewModel()
+            => new PlayingGameViewModel(_gameManager, new NavigationService(_navigationStore, CreateHighScoresViewModel),
+                new NavigationService(_navigationStore, CreateYouLostViewModel));
 
-        private HighScoresViewModel CreateHighScoresViewModel()
+        public HighScoresViewModel CreateHighScoresViewModel()
             => new HighScoresViewModel(_gameManager);
-        private YouLostViewModel CreateYouLostViewModel()
-            => new YouLostViewModel(_gameManager);
 
-        */
+        public YouLostViewModel CreateYouLostViewModel()
+            => new YouLostViewModel(_gameManager, new NavigationService(_navigationStore, CreateGameMenuViewModel));
+
     }
 }

@@ -34,6 +34,10 @@ namespace theHangedManWpf.Models
         {
             try
             {
+                if (CurrentGame.CurrentWord is not null)
+                    CurrentGame.CurrentWord = null;
+
+
                 CurrentGame = new Game(null, 
                     new GuessedWord(GuessingWordsDictionary.GetValueOrDefault(Random.Shared.Next(0, GuessingWordsDictionary.Count + 1), "default")));
             }

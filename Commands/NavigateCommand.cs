@@ -11,15 +11,15 @@ namespace theHangedManWpf.Commands
 {
     public class NavigateCommand : CommandBase
     {
-        private NavigationService _navigationServiceService;
+        private NavigationService _navigationService;
 
         public NavigateCommand(NavigationService navigationService)
         {
-            _navigationServiceService = navigationService;
+            _navigationService = navigationService;
         }
         public override void Execute(object? parameter)
         {
-            _navigationServiceService.Navigate();
+            _navigationService.Navigate();
         }
     }
 }

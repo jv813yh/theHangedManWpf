@@ -42,12 +42,10 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                <Button Content="New game as a new player"
+                <Button Content="New Game"
+                        Command="{Binding Path=NewGameCommand}"
                         Margin="0,20,10,0"/>
-                
-                <Button Content="New Game as the same player"
-                        Margin="0,20,10,0"/>
-                
+
                 <Button Content="Quit game"
                         Command="{Binding Path=QuitGameCommand}"
                         Margin="0,20,10,0"/>

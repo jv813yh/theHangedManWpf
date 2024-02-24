@@ -10,7 +10,7 @@ namespace theHangedManWpf.Commands
     {
         private readonly LetsPlayViewModel _letsPlayViewModel;
         private readonly NavigationService _navigationService;
-        private Game _game;
+        private readonly Game _game;
 
         public LoadNickNameCommand(LetsPlayViewModel letsPlayViewModel, 
             NavigationService navigationService, Game game)
