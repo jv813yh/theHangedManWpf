@@ -50,7 +50,6 @@ namespace theHangedManWpf.Commands
             //
             _playingGameViewModel.GuessInputString = string.Empty;
 
-            Dispose();
         }
     }
 }
