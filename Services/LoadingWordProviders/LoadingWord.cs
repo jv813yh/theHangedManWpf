@@ -20,6 +20,10 @@ namespace theHangedManWpf.Services.LoadingWordProviders
 
             using(StreamReader sr = new StreamReader(_connectionString))
             {
+                if(!File.Exists(_connectionString))
+                    throw new FileNotFoundException($"The file {_connectionString} cannot be found." +
+                        $"\nThe file must be in the /bin/Debug/net8.0 folder");
+
                 try
                 {
                     string line;
@@ -33,8 +37,7 @@ namespace theHangedManWpf.Services.LoadingWordProviders
                 }
                 catch (Exception)
                 {
-
-                    MessageBox.Show($"Error reading file\nPlease, check if it is in the bin folder file {_connectionString}", "Error",
+                    MessageBox.Show($"Error reading file\nThe file {_connectionString} may be damaged or in a bad format", "Error",
                         MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

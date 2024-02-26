@@ -66,6 +66,7 @@ namespace theHangedManWpf.ViewModels
                     {
                         AddErrors(nameof(GuessInputString), "Why are you entering numbers ?");
                     }
+
                 }
                 catch (ArgumentException)
                 {
@@ -112,12 +113,12 @@ namespace theHangedManWpf.ViewModels
         }
 
         public PlayingGameViewModel(GameManager gameManager, 
-            NavigationService winService, NavigationService lostService)
+            NavigationService winNavigationService, NavigationService lostNavigationService)
         {
 
             _gameManager = gameManager;
 
-            IGameEvaluationProvider gameProvider = new GameEvaluationProvider(_gameManager, winService, lostService);
+            IGameEvaluationProvider gameProvider = new GameEvaluationProvider(_gameManager, winNavigationService, lostNavigationService);
 
             GuessCommandVieModel = new GuessCommand(this, gameProvider);
 

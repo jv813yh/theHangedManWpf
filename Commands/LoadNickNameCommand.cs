@@ -6,7 +6,7 @@ using theHangedManWpf.ViewModels;
 
 namespace theHangedManWpf.Commands
 {
-    public class LoadNickNameCommand : CommandBase
+    public class LoadNickNameCommand : CommandBase, IDisposable
     {
         private readonly LetsPlayViewModel _letsPlayViewModel;
         private readonly NavigationService _navigationService;
@@ -38,12 +38,21 @@ namespace theHangedManWpf.Commands
             if(_game.Player != null & _game.CurrentWord != null)
             {
                 _navigationService.Navigate();
+
+                Dispose();
             }
             else
             {
                 MessageBox.Show("No player name was entered or word was not created\n" +
                     "Please, repeat it again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+
+        // Implementation IDisposable interface
+        public void Dispose()
+        {
+            _letsPlayViewModel.PropertyChanged -= OnViewModelPropertyChanged;
         }
     }
 }

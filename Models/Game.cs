@@ -17,7 +17,7 @@
         // Difficulty level chosen by the player
         public string PlayerDifficulty { get; set; }
 
-        // Current state of the game
+        // Current state of the games
         public GameState PlayerGameState { get; set; }
 
         public Game(Player player, GuessedWord currentWord)
@@ -25,12 +25,5 @@
             Player = player;
             CurrentWord = currentWord;
         }
-
-        // for XML deserialization
-        public Game()
-        {
-            
-        }
-
     }
 }

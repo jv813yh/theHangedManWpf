@@ -62,9 +62,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\PlayersWrittingProviders\" />
-    <Folder Include="Services\PlayersReadingProviders\" />
-  </ItemGroup>
-
 </Project>

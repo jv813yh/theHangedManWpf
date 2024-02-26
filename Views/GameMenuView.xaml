@@ -69,7 +69,7 @@
                    Foreground="#305acf"
                    Padding="6">Change difficulty</Label>
             </Border>
-            <RadioButton IsChecked="True"
+            <RadioButton 
                          Command="{Binding DifficultyCommand}"
                          Name="EasyRadioButton"
                          CommandParameter="Easy"
@@ -103,9 +103,6 @@
                 <!-- Buttons -->
                 <Button Content="Play" 
                         Command="{Binding Path=PlayGameCommand}"
-                        Margin="10"/>
-                <Button Content="High Scores" 
-                        Command="{Binding Path=HighScoresCommand}"
                         Margin="10"/>
                 <Button Content="Rules of game" 
                         Margin="10"/>

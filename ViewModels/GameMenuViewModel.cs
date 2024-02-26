@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using theHangedManWpf.Commands;
 using theHangedManWpf.Models;
@@ -11,30 +12,32 @@ namespace theHangedManWpf.ViewModels
         private Game _game;
         public ICommand PlayGameCommand { get; }
         public ICommand DifficultyCommand { get; }
-        public ICommand HighScoresCommand { get; }
         public ICommand QuickCommand { get; }
+
+        public event Action DifficultyCommandlChanged;
 
         public GameMenuViewModel(NavigationService navigationService, GameManager gameManager)
         {
             _game = gameManager.CurrentGame;
 
-            DifficultyCommand = new RelayCommand<string>(ExecuteMethod, CanExecuteMethod);
+            DifficultyCommand = new RelayCommand<string>(ExecuteMethod);
 
-            PlayGameCommand = new NavigateCommand(navigationService);
+            PlayGameCommand = new VerifySetDifficultyCommand(gameManager, this, new NavigateCommand(navigationService));
 
             QuickCommand = new CloseGameCommand();
         }
 
-        // I have IsChecked="True" for RadioButton but I use function CanExecuteMethod for verify it
-        private bool CanExecuteMethod(object parameter) 
-            => (parameter != null) ? true : false;
-
-        
+        private void OnDifficultyCommandlChanged()
+        {
+            DifficultyCommandlChanged?.Invoke();
+        }
         private void ExecuteMethod(object parameter)
         {
             try
             {
                 _game.PlayerDifficulty = Convert.ToString(parameter);
+
+                OnDifficultyCommandlChanged();
             }
             catch (ArgumentNullException ex)
             {

@@ -59,7 +59,7 @@ namespace theHangedManWpf
                 new NavigationService(_navigationStore, CreateYouLostViewModel));
 
         public HighScoresViewModel CreateHighScoresViewModel()
-            => new HighScoresViewModel(_gameManager);
+            => HighScoresViewModel.ReturnHighScoresViewModel(_gameManager, new NavigationService(_navigationStore, CreateGameMenuViewModel));
 
         public YouLostViewModel CreateYouLostViewModel()
             => new YouLostViewModel(_gameManager, new NavigationService(_navigationStore, CreateGameMenuViewModel));

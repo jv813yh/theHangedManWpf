@@ -41,8 +41,6 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
                     {
                         _holderBool[i] = true;
 
-                        _guessedWord.CountOfGuessCharacters++;
-
                         if (_holderBool.All(x => x == true))
                         {
 
@@ -54,8 +52,9 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
             else
             {
                 AttemptsLeft =  --_guessedWord.AttemptsLeft;
+                _guessedWord.CountOfMistakes++;
 
-                if(AttemptsLeft == 0)
+                if (AttemptsLeft == 0)
                 {
                    _lostService.Navigate();
                 }

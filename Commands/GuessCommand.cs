@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 using theHangedManWpf.Services.GameEvaluationProviders;
 using theHangedManWpf.ViewModels;
 
@@ -51,6 +50,7 @@ namespace theHangedManWpf.Commands
             //
             _playingGameViewModel.GuessInputString = string.Empty;
 
+            Dispose();
         }
     }
 }

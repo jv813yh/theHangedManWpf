@@ -12,12 +12,6 @@
             NickName = name;
         }
 
-        // Constructor for XAML deserialization
-        public Player()
-        {
-            
-        }
-
         // Override of the ToString method to provide string representation of the player
         public override string ToString()
         {
