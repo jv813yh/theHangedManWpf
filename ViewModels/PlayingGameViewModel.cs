@@ -52,7 +52,6 @@ namespace theHangedManWpf.ViewModels
                     if(!string.IsNullOrEmpty(_guessInputString))
                         GuessChar = char.ToUpper(value[0]);
 
-
                     OnPropertyChanged(nameof(GuessInputString));
 
                     ClearErrors(nameof(GuessInputString));

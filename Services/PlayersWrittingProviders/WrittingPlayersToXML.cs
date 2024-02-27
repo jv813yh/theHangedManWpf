@@ -20,16 +20,16 @@ namespace theHangedManWpf.Services.PlayersWrittingProviders
         {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(_players.GetType());
+                List<PlayerViewModel> player_List = _players.ToList();
+                XmlSerializer xmlSerializer = new XmlSerializer(player_List.GetType());
 
                 using (StreamWriter sw = new StreamWriter(_connectionString))
                 {
-                    xmlSerializer.Serialize(sw, _players);
+                    xmlSerializer.Serialize(sw, player_List); 
                 }
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Oh No, something went wrong with writting players", "Error during writting players",
                     MessageBoxButton.OK, MessageBoxImage.None);
             }

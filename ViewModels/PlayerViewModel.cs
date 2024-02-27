@@ -38,7 +38,15 @@ namespace theHangedManWpf.ViewModels
 
             set => _playerDifficulty =  value;
         }
-       
+
+        private int _levelOfDifficulty;
+        public int LevelOfDificulty 
+        { 
+            get => _levelOfDifficulty;
+            set => _levelOfDifficulty = value;
+
+        }
+
         public PlayerViewModel(Game game)
         {
             _game = game;
@@ -60,7 +68,19 @@ namespace theHangedManWpf.ViewModels
                 _guessedWord = currentgame.CurrentWord.GuessWord;
                 _countOfMistakes = currentgame.CurrentWord.CountOfMistakes;
                 _playerDifficulty = currentgame.PlayerDifficulty;
+                _levelOfDifficulty = ReturnLevelOfDificultyInt(_playerDifficulty);
             }
+        }
+
+        private int ReturnLevelOfDificultyInt(string difficulty)
+        {
+            return difficulty switch
+            {
+                "Easy" => 1,
+                "Medium" => 2,
+                "Hard" => 3,
+                _ => 0,
+            };
         }
     }
 }

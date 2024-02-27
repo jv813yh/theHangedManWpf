@@ -7,8 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0">
             <TextBlock Text="The best players:"
                        Margin="20,30,0,0"
                         HorizontalAlignment="Left"
@@ -17,18 +22,98 @@
                         Background="Transparent"
                         FontSize="30"
                         FontWeight="Bold"/>
+
+            <ListView ItemsSource="{Binding Path=Players}"
+                      Margin="20,20,20,20"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Background="Transparent"
+                      BorderBrush="White"
+                      BorderThickness="3"
+                      Visibility="Visible"
+                      Width="600"
+                      Height="250">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="8"/>
+                                <Setter Property="Foreground" Value="#305acf"/>
+                                <Setter Property="FontSize" Value="12"/>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        
+                        
+                        <GridViewColumn Header="Name"
+                                        Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" 
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Guessed word"
+                                        Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding GuessedWord}" 
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Difficulty"
+                                        Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PlayerDifficulty}" 
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Header="Count of mistakes"
+                                        Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CountOfMistakes}" 
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                            
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center">
+        <StackPanel Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Margin="0,0,180,0"
+                VerticalAlignment="Center">
             <Button Content="New Game"
-             Command="{Binding Path=NewGameCommand}"
-             Margin="0,20,10,0"/>
+                Command="{Binding Path=NewGameCommand}"
+                Margin="0,20,50, 20"/>
 
             <Button Content="Quit game"
-             Command="{Binding Path=QuitGameCommand}"
-             Margin="0,20,10,0"/>
+                Command="{Binding Path=QuitGameCommand}"
+                Margin="0,20,10,20"/>
         </StackPanel>
 
     </Grid>

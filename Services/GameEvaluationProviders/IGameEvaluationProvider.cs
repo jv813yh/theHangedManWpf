@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using theHangedManWpf.Models;
-
-namespace theHangedManWpf.Services.GameEvaluationProviders
+﻿namespace theHangedManWpf.Services.GameEvaluationProviders
 {
     public interface IGameEvaluationProvider
     {
