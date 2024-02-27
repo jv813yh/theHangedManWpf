@@ -57,7 +57,7 @@ namespace theHangedManWpf.ViewModels
 
                     ClearErrors(nameof(GuessInputString));
 
-                    if (GuessInputString.Length > 2)
+                    if (GuessInputString.Length > 1 )
                     {
                         AddErrors(nameof(GuessInputString), "Enter only one letter.");
                     }

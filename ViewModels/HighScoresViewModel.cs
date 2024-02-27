@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using theHangedManWpf.Commands;
 using theHangedManWpf.Models;
@@ -14,6 +15,7 @@ namespace theHangedManWpf.ViewModels
         private readonly GameManager _gameManager;
 
         private readonly ObservableCollection<PlayerViewModel> _players;
+
         public IEnumerable<PlayerViewModel> Players => _players;
 
         public ICommand LoadHighScoresPlayersCommand { get; }
@@ -29,7 +31,7 @@ namespace theHangedManWpf.ViewModels
 
             LoadHighScoresPlayersCommand = new LoadHighScoresPlayersCommand(this, _connectionString);
 
-            WritePlayerCommand = new WritePlayerToXmlCommand(this, new WrittingPlayersToXML(Players, _connectionString));
+            WritePlayerCommand = new WritePlayersToXmlCommand(this, new WrittingPlayersToXML(Players, _connectionString));
 
             NewGameCommand = new NewGameCommad(_gameManager, new NavigateCommand(navigationService));
 
@@ -42,12 +44,15 @@ namespace theHangedManWpf.ViewModels
 
             returnViewModel.LoadHighScoresPlayersCommand.Execute(null);
 
+            if (returnViewModel.Players is null)
+                MessageBox.Show("Players are null", "!!", MessageBoxButton.OK);
+
             returnViewModel.WritePlayerCommand.Execute(null);
 
             return returnViewModel;
         }
 
-        public void UpdatePlayers(IEnumerable<PlayerViewModel> playersFromXml)
+        public void UpdatePlayers(List<PlayerViewModel> playersFromXml)
         {
             if (playersFromXml is not null)
             {
@@ -62,7 +67,12 @@ namespace theHangedManWpf.ViewModels
 
         public void MapToPlayerViewModel()
         {
-            _players.Add(new PlayerViewModel(_gameManager.CurrentGame));
+            PlayerViewModel currentPlayer = new PlayerViewModel(_gameManager.CurrentGame);
+
+            if(currentPlayer.Name.Length > 2)
+            {
+                _players.Add(currentPlayer);
+            }
         }
     }
 }

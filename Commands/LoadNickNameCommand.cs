@@ -33,6 +33,8 @@ namespace theHangedManWpf.Commands
 
         public override void Execute(object? parameter)
         {
+            MessageBox.Show($"Name in LoadNickNameCommand: {_letsPlayViewModel.NickName}");
+
             _game.Player = new Player(_letsPlayViewModel.NickName);
 
             if(_game.Player != null & _game.CurrentWord != null)

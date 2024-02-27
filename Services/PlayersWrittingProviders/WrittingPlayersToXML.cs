@@ -5,26 +5,26 @@ using theHangedManWpf.ViewModels;
 
 namespace theHangedManWpf.Services.PlayersWrittingProviders
 {
-    public class WrittingPlayersToXML
+    public class WrittingPlayersToXML : IWrittingPlayersToXml
     {
         private readonly string _connectionString;
-        private IEnumerable<PlayerViewModel> Players;
+        private IEnumerable<PlayerViewModel> _players;
 
         public WrittingPlayersToXML(IEnumerable<PlayerViewModel> PlayersToXml, string connectionString)
         {
             _connectionString = connectionString;
-            Players = PlayersToXml;
+            _players = PlayersToXml;
         }
 
         public void SerializationPlayer()
         {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(Players.GetType());
+                XmlSerializer xmlSerializer = new XmlSerializer(_players.GetType());
 
                 using (StreamWriter sw = new StreamWriter(_connectionString))
                 {
-                    xmlSerializer.Serialize(sw, Players);
+                    xmlSerializer.Serialize(sw, _players);
                 }
             }
             catch (Exception)

@@ -30,17 +30,21 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
             _lostService = lostService;
             _holderBool = new bool[_guessedWord.GuessWord.Length];
         }
+
+        // Method to evaluate the guessed word and navigate to win or lost view
         public void DoEvaluationGuessedWord(char guessedChar)
         {
+            // if the guessed letter is in the word
             if(_guessedWord.GuessWord.Contains(guessedChar))
             {
                 for (int i = 0; i < _guessedWord.GuessWord.Length; i++)
                 {
-
+                    // if the letter is in the word
                     if (_guessedWord.GuessWord[i] == guessedChar)
                     {
                         _holderBool[i] = true;
 
+                        // if all letters are guessed
                         if (_holderBool.All(x => x == true))
                         {
 
@@ -51,6 +55,8 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
             }
             else
             {
+                // if the letter is not in the word
+
                 AttemptsLeft =  --_guessedWord.AttemptsLeft;
                 _guessedWord.CountOfMistakes++;
 
@@ -63,6 +69,8 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
             EditedGuessedWord();
         }
 
+        // Method to edit the _getEditedGuessedWord word
+        // that is binding to display to view
         public void EditedGuessedWord()
         {
             // we can work with StringBuilder,

@@ -5,7 +5,7 @@ using theHangedManWpf.ViewModels;
 
 namespace theHangedManWpf.Services.PlayersReadingProviders
 {
-    public class ReadingPlayersFromXml
+    public class ReadingPlayersFromXml : IReadingPlayersFromXml
     {
         private readonly string _connectionString;
 
