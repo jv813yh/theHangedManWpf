@@ -4,14 +4,24 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
 {
     public class GameEvaluationProvider : IGameEvaluationProvider
     {
+        
         private readonly NavigationService _winService;
         private readonly NavigationService _lostService;
         private readonly GuessedWord _guessedWord;
 
+        // The difficulty of the game
+        private string _difficulty;
+
+        // Array to hold the letters that are guessed in bool values
         private readonly bool[] _holderBool;
 
+        // The word that is binding to display to view
         private string _getEditedGuessedWord = "";
+
+        // Property to get the number of attempts left
         public int AttemptsLeft { get; set; } = 11;
+
+        // Property to get the edited guessed word
         public string GetEditedGuessedWord
         {
             get => _getEditedGuessedWord;
@@ -26,36 +36,42 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
             NavigationService lostService)
         {
             _guessedWord = gameManager.CurrentGame.CurrentWord;
+
             _winService = winService;
             _lostService = lostService;
+
             _holderBool = new bool[_guessedWord.GuessWord.Length];
+
+            _difficulty = gameManager.CurrentGame.PlayerDifficulty;
         }
 
         // Method to evaluate the guessed word and navigate to win or lost view
         public void DoEvaluationGuessedWord(char guessedChar)
         {
-            // if the guessed letter is in the word
+            // If the guessed letter is in the word
             if(_guessedWord.GuessWord.Contains(guessedChar))
             {
+                // Index of the guessed character in the word
                 for (int i = 0; i < _guessedWord.GuessWord.Length; i++)
                 {
-                    // if the letter is in the word
-                    if (_guessedWord.GuessWord[i] == guessedChar)
+                    // If the letter is in the word
+                    if (_guessedWord.GuessWord[i] == guessedChar && _difficulty.Contains("Easy"))
                     {
-                        _holderBool[i] = true;
+                        // If all letters are guessed
+                        ChangeHolderBoolAndVeriyLetters(i);
+                    }
+                    else if(_guessedWord.GuessWord[i] == guessedChar && !_holderBool[i])
+                    {
+                        // If only one letter is gussed
+                        ChangeHolderBoolAndVeriyLetters(i);
 
-                        // if all letters are guessed
-                        if (_holderBool.All(x => x == true))
-                        {
-
-                            _winService.Navigate();
-                        }
+                        break;
                     }
                 }
             }
             else
             {
-                // if the letter is not in the word
+                // If the letter is not in the word
 
                 AttemptsLeft =  --_guessedWord.AttemptsLeft;
                 _guessedWord.CountOfMistakes++;
@@ -66,7 +82,20 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
                 }
             }
 
+            // Edit the _getEditedGuessedWord word, that is binding to display to view
             EditedGuessedWord();
+        }
+
+        // Method to change the _holderBool and verify the all letters
+        private void ChangeHolderBoolAndVeriyLetters(int i)
+        {
+            _holderBool[i] = true;
+
+            // if all letters are guessed
+            if (_holderBool.All(x => x == true))
+            {
+                _winService.Navigate();
+            }
         }
 
         // Method to edit the _getEditedGuessedWord word

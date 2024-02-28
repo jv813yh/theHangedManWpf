@@ -22,19 +22,20 @@ namespace theHangedManWpf.Commands
             _letsPlayViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
 
+        // Check if the NickName property has changed
         private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_letsPlayViewModel.NickName))
                 OnCanExecuteChanged();
         }
 
+        // Check if the NickName property has at least 3 characters
         public override bool CanExecute(object? parameter) 
             => (_letsPlayViewModel.NickName.Length < 3) ? false : true;
 
+        // Execute the command to create a new player and navigate to the PlayingGameView
         public override void Execute(object? parameter)
         {
-            MessageBox.Show($"Name in LoadNickNameCommand: {_letsPlayViewModel.NickName}");
-
             _game.Player = new Player(_letsPlayViewModel.NickName);
 
             if(_game.Player != null & _game.CurrentWord != null)
@@ -49,7 +50,6 @@ namespace theHangedManWpf.Commands
                     "Please, repeat it again", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
         // Implementation IDisposable interface
         public void Dispose()

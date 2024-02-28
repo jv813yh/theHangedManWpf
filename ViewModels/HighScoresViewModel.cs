@@ -33,16 +33,22 @@ namespace theHangedManWpf.ViewModels
 
         public HighScoresViewModel(GameManager gameManager, NavigationService navigationService)
         {
+            // Initialize the game manager 
             _gameManager = gameManager;
 
+            // Initialize the list of players
             _players = new ObservableCollection<PlayerViewModel>();
 
+            // Initialize the commands with the view model and the connection string and loading players from xml file
             LoadHighScoresPlayersCommand = new LoadHighScoresPlayersCommand(this, _connectionString);
 
+            // Initialize the commands with the view model and the connection string and writing Players to the xml file
             WritePlayerCommand = new WritePlayersToXmlCommand(this, new WrittingPlayersToXML(Players, _connectionString));
 
+            // Initialize the commands with the game manager and the navigation service with starting a new game
             NewGameCommand = new NewGameCommad(_gameManager, new NavigateCommand(navigationService));
 
+            // Initialize the command with quitting the game
             QuitGameCommand = new CloseGameCommand();
         }
 
