@@ -95,9 +95,10 @@
                     Grid.RowSpan="3"
                     Orientation="Vertical">
             <TextBox Width="80"
-                     Text="Tu pride čas"
+                     Text="{Binding Path=LeftTime}"
                      Height="50"
-                     Margin="10,10,10,10"/>
+                     Margin="10,10,10,10"
+                     Visibility="Visible"/>
 
             <!-- 
                  We can also use Canvas, for example, 
@@ -165,21 +166,12 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal">
-            <Button Content="Restart"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Margin="20,0,0,20"
-                    Width="60"
-                    Height="30"/>
-            
-            <Button Content="High Scores"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Margin="180,0,0,20"
-                    Width="70"
-                    Height="30"/>
-        </StackPanel>
+        <Button Grid.Row="2"
+                Command="{Binding Path=NewGameCommand}"
+                Content="New Game"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="60"
+                Height="30"/>
     </Grid>
 </UserControl>

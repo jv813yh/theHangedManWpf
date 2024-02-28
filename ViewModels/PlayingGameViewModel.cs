@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using theHangedManWpf.Commands;
 using theHangedManWpf.Models;
 using theHangedManWpf.Services;
@@ -12,6 +13,20 @@ namespace theHangedManWpf.ViewModels
     public class PlayingGameViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private GameManager _gameManager;
+
+        private DispatcherTimer? _timer;
+
+        private int _leftTime = 10;
+        public int LeftTime
+        {
+            get { return _leftTime; }
+
+            set
+            {
+                _leftTime = value;
+                OnPropertyChanged(nameof(LeftTime));
+            }
+        }
 
         private int _attemptsLeftViewModel = 11;
         public int AttemptsLeftViewModel
@@ -26,7 +41,7 @@ namespace theHangedManWpf.ViewModels
         public string CurrentGuessWord 
             => _gameManager.CurrentGame.CurrentWord.GuessWord;
 
-        private string _resultGuessWord;
+        private string _resultGuessWord = "";
         public string ResultGuessWord
         {
             get => _resultGuessWord;
@@ -38,7 +53,7 @@ namespace theHangedManWpf.ViewModels
             }
         }
 
-        private string _guessInputString;
+        private string _guessInputString = "";
 
         public string GuessInputString
         {
@@ -80,6 +95,8 @@ namespace theHangedManWpf.ViewModels
 
         public char GuessChar { get; set; }
         public ICommand GuessCommandVieModel { get; }
+        public ICommand TimeTickerCommand { get; }
+        public ICommand NewGameCommand { get; }
 
 
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
@@ -112,7 +129,7 @@ namespace theHangedManWpf.ViewModels
         }
 
         public PlayingGameViewModel(GameManager gameManager, 
-            NavigationService winNavigationService, NavigationService lostNavigationService)
+            NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService NewGameService)
         {
 
             _gameManager = gameManager;
@@ -123,7 +140,22 @@ namespace theHangedManWpf.ViewModels
 
             _propertyToDictionaryErrors = new Dictionary<string, List<string>>();
 
+            NewGameCommand = new NewGameCommad(_gameManager, new NavigateCommand(NewGameService));
+
+            TimeTickerCommand = new TimerTickCommand(_gameManager, this, _timer ,new NavigateCommand(lostNavigationService));
+
             MessageBox.Show($"{CurrentGuessWord}", "CurrentGuessWord", MessageBoxButton.OK);
+
+        }
+
+        public static PlayingGameViewModel ReturnPlayingGameViewModel(GameManager gameManager, 
+                       NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService NewGameService)
+        {
+            PlayingGameViewModel returnViewModel = new PlayingGameViewModel(gameManager, winNavigationService, lostNavigationService, NewGameService);
+
+            returnViewModel.TimeTickerCommand.Execute(null);
+
+            return returnViewModel;
         }
     }
 }
