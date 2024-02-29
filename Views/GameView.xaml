@@ -32,7 +32,7 @@
             <Label Content="_YOUR LETTER:"
                    Target="{Binding ElementName= GuessTextBox}"
                    FontSize="30"
-                   Foreground="#305acf"
+                   Foreground="#dfd2d6"
                    FontWeight="ExtraBlack"
                    Margin="15,5,5,5"/>
 
@@ -67,10 +67,8 @@
                 </Validation.ErrorTemplate>
             </TextBox>
 
-            <Button Content="GUESS"
-                     Width="50"
+            <Button Content="Guess"
                      Command="{Binding Path=GuessCommandVieModel}"
-                     Height="30"
                     Margin="10,40,10,10"
                     IsDefault="True"/>
             
@@ -179,8 +177,6 @@
                 Command="{Binding Path=NewGameCommand}"
                 Content="New Game"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Width="60"
-                Height="30"/>
+                VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -6,6 +6,7 @@ namespace theHangedManWpf.Converters
 {
     public class TimerTickToVisibilityConverter : IValueConverter
     {
+        
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if(value is string difficultyPlayerString)

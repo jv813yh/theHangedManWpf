@@ -18,7 +18,7 @@
         <Label Content="_ENTER YOUR NICKNAME"
                FontFamily="Helvetica"
                FontSize="28"
-               Foreground="#305acf"
+               Foreground="#dfd2d6"
                FontWeight="ExtraBold"
                Margin="0,20,0,0"
                VerticalAlignment="Center"
@@ -60,11 +60,8 @@
                 Command="{Binding PlayGameCommand}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Content="PLAY"
-                Foreground="#305acf"
+                Content="Play"
                 Grid.Row="2"
-                Width="60"
-                Height="50"
                 IsDefault="True"/>
 
     </Grid>

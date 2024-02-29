@@ -28,7 +28,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -41,59 +40,75 @@
                     Grid.ColumnSpan="2">
             <TextBlock Text="The"
                        Style="{StaticResource TitleTextBlock}"
-                       Margin="70,0,0,0"/>
+                       Margin="75,20,0,0"/>
             <TextBlock Text="Hanged"
                        Style="{StaticResource TitleTextBlock}"
-                        Margin="140,0,0,0"/>
+                        Margin="160,0,0,0"/>
             <TextBlock Text="Man"
                        Style="{StaticResource TitleTextBlock}"
-                       Margin="280,0,0,0"/>
+                       Margin="355,0,0,0"/>
+            <TextBlock Text="This could be you"
+                       FontSize="24"
+                       Foreground="Red"
+                       FontStyle="Italic"
+                       FontWeight="Light"
+                       Margin="220,10,0,0"/>
+            <TextBlock FontSize="24" 
+                       FontWeight="Light" 
+                       Foreground="Red"
+                       Margin="220,0,0,0">
+                <Run Text="&lt;------------------"/>
+            </TextBlock>
         </StackPanel>
 
-        <Image Source="../Images/hangedMan.JPG"
+        <Image Source="../Images/theHangedMan.JPG"
                Grid.RowSpan="2"
-               Width="130"
-               Height="180"
-               Margin="40,180,140,10"/>
+               Margin="15,130,100,0"
+               Width="180"
+               Height="350"/>
 
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.RowSpan="1"
                     Grid.ColumnSpan="2"
+                    Margin="0,300,0,0"
+                    VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <Border BorderBrush="#305acf"
-                    BorderThickness="2"
+            <Border BorderBrush="#dfd2d6"
+                    BorderThickness="3"
                     HorizontalAlignment="Left"
                     Width="250"
                     CornerRadius="25">
                 <Label FontWeight="Bold"
                    FontSize="28"
-                   Foreground="#305acf"
+                   Foreground="#dfd2d6"
                    Padding="6">Change difficulty</Label>
             </Border>
-            <RadioButton 
+            <RadioButton Foreground="#dfd2d6"
                          Command="{Binding DifficultyCommand}"
                          Name="EasyRadioButton"
                          CommandParameter="Easy"
                          Style="{StaticResource DifficultyRadioButton}">Easy</RadioButton>
             <RadioButton Name="MediumRadioButton"
+                         Foreground="#dfd2d6"
                          CommandParameter="Medium"
                          Command="{Binding DifficultyCommand}"
                          Style="{StaticResource DifficultyRadioButton}">Medium</RadioButton>
             <RadioButton Name="HardRadioButton"
+                         Foreground="#dfd2d6"
                          Command="{Binding DifficultyCommand}"
                          CommandParameter="Hard"
                          Style="{StaticResource DifficultyRadioButton}">Hard</RadioButton>
         </StackPanel>
 
-        <Border BorderBrush="#305acf" 
+        <Border BorderBrush="#dfd2d6" 
                 BorderThickness="2" 
                 CornerRadius="35"
                 HorizontalAlignment="Right"
                 Grid.Column="1"
-                Height="450"
+                Height="430"
                 Grid.RowSpan="2"
-                Margin="0,15,30,0">
+                Margin="0,15,20,0">
             <StackPanel Orientation="Vertical" 
-                        Width="120" Height="290">
+                        Width="130" Height="300">
                 <!-- Image-->
                 <Image Source="../Images/image6.png"
                        Width="90" 

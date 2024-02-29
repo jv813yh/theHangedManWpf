@@ -78,7 +78,7 @@ namespace theHangedManWpf.Services.GameEvaluationProviders
 
                 if (AttemptsLeft == 0)
                 {
-                   _lostService.Navigate();
+                    _lostService.Navigate();
                 }
             }
 
