@@ -5,6 +5,7 @@
 
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="FontStyle" Value="Italic"/>
         <Setter Property="Width" Value="105"/>
         <Setter Property="Height" Value="45"/>
         <Setter Property="FontSize" Value="14"/>
@@ -27,7 +28,7 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="White"/>
                 <Setter Property="Opacity" Value="0.3"/>
-                <Setter Property="Foreground" Value="DeepSkyBlue"/>
+                <Setter Property="Foreground" Value="#5a5d65"/>
             </Trigger>
         </Style.Triggers>
 

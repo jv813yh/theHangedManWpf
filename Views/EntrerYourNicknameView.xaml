@@ -18,7 +18,7 @@
         <Label Content="_ENTER YOUR NICKNAME"
                FontFamily="Helvetica"
                FontSize="28"
-               Foreground="#dfd2d6"
+               Foreground="#7e8b5e"
                FontWeight="ExtraBold"
                Margin="0,20,0,0"
                VerticalAlignment="Center"
@@ -61,8 +61,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Content="Play"
-                Grid.Row="2"
-                IsDefault="True"/>
+                Grid.Row="2"/>
 
     </Grid>
 </UserControl>

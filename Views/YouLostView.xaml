@@ -12,13 +12,12 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
 
-            <TextBox Text="YOU LOST GAME :("
+            <TextBlock Text=":(  YOU LOST GAME  :("
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      FontSize="50"
                      Foreground="Red"
                      Background="Transparent"
-                     BorderBrush="Transparent"
                      FontWeight="Bold"/>
 
             <TextBlock Text="The guessed word was"

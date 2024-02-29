@@ -18,7 +18,7 @@
                        Margin="20,30,0,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Foreground="#dfd2d6"
+                        Foreground="#7e8b5e"
                         Background="Transparent"
                         FontSize="30"
                         FontWeight="Bold"/>
@@ -28,7 +28,7 @@
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Background="Transparent"
-                      BorderBrush="White"
+                      BorderBrush="#7e8b5e"
                       BorderThickness="3"
                       Visibility="Visible"
                       Width="600"
@@ -46,7 +46,7 @@
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="BorderBrush" Value="White"/>
                                 <Setter Property="BorderThickness" Value="8"/>
-                                <Setter Property="Foreground" Value="#dfd2d6"/>
+                                <Setter Property="Foreground" Value="#7e8b5e"/>
                                 <Setter Property="FontSize" Value="14"/>
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>

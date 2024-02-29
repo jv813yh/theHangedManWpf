@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="theHangedManWpf.Views.RulesOfGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:theHangedManWpf.Views"
+             mc:Ignorable="d" 
+             
+            d:DesignHeight="500" d:DesignWidth="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.RowSpan="2" 
+                Content="Rules of the game"
+                Margin="0,20,0,100"
+                Width="260"
+                Height="60"
+                FontSize="26"/>
+
+
+        
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1"
+                    Margin="5,0,0,0"
+                    Grid.RowSpan="2">
+            <TextBlock Text="Easy:" 
+                       FontStyle="Italic"
+                       FontSize="18" 
+                       Foreground="Black"
+                       Margin="0,50,0,0"/>
+            <TextBlock Text="You have to guess the word by entering letter. If you guess the word, you win. If you make 11 mistakes, you lose.&#x0a;If you guess a letter, all the guessed letters will be displayed" 
+                       FontSize="14" 
+                       Foreground="#7e8b5e"
+                       Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2"
+                    Margin="5,5,0,0"
+                    Grid.RowSpan="2">
+            <TextBlock Text="Medium:" 
+                       FontStyle="Italic"
+                    FontSize="18" 
+                    Foreground="Black"
+                    Margin="0,10,0,0"/>
+            <TextBlock Text="The same as Easy level, but with the difference that if you guess the letter, it will be written only once." 
+                    FontSize="14" 
+                    Foreground="#7e8b5e"
+                    Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2"
+                    Margin="5,100,0,0"
+                    Grid.RowSpan="2">
+            <TextBlock Text="Hard:" 
+                       FontStyle="Italic"
+                    FontSize="18" 
+                    Foreground="Black"
+                    Margin="0,10,0,0"/>
+            <TextBlock Text="The same as Medium level, but with the difference that you have to guess within a certain time." 
+                    FontSize="14" 
+                    Foreground="#7e8b5e"
+                    Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <Button Command="{Binding NavigateCommand}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="Return back"
+                Margin="0,50,0,0"
+                Grid.RowSpan="2"
+                Width="140"
+                Height="60"
+                FontSize="18"
+                Grid.Row="3"/>
+
+    </Grid>
+</UserControl>

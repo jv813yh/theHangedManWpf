@@ -10,18 +10,21 @@ namespace theHangedManWpf.ViewModels
     {
         private Game _game;
         public ICommand PlayGameCommand { get; }
+        public ICommand RulesOfGameCommand { get; }
         public ICommand DifficultyCommand { get; }
         public ICommand QuickCommand { get; }
 
         public event Action DifficultyCommandlChanged;
 
-        public GameMenuViewModel(NavigationService navigationService, GameManager gameManager)
+        public GameMenuViewModel(NavigationService navigationService, NavigationService rulesOfTheGameService, GameManager gameManager)
         {
             _game = gameManager.CurrentGame;
 
             DifficultyCommand = new RelayCommand<string>(ExecuteMethod);
 
             PlayGameCommand = new VerifySetDifficultyCommand(gameManager, this, new NavigateCommand(navigationService));
+
+            RulesOfGameCommand = new NavigateCommand(rulesOfTheGameService);
 
             QuickCommand = new CloseGameCommand();
         }

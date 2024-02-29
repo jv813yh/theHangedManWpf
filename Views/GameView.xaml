@@ -22,22 +22,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Center"
+                    Grid.RowSpan="2"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Center">
             
-            <Label Content="_YOUR LETTER:"
+            <Label Content="_Your letter"
                    Target="{Binding ElementName= GuessTextBox}"
                    FontSize="30"
-                   Foreground="#dfd2d6"
+                   Foreground="#7e8b5e"
                    FontWeight="ExtraBlack"
-                   Margin="15,5,5,5"/>
+                   Margin="0,20,0,0"/>
 
             <TextBox Width="80"
                      Padding="20,10,10,10"
+                     Margin="0,10,0,0"
                      FontWeight="Black"
                      FontSize="18"
                      BorderBrush="DimGray"
@@ -45,7 +47,6 @@
                      Height="55"
                      Text="{Binding GuessInputString, Mode=TwoWay, 
                             UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}"
-                     Margin="10,5,0,3"
                      Focusable="true"
                      Name="GuessTextBox">
                 <Validation.ErrorTemplate>
@@ -75,19 +76,22 @@
         </StackPanel>
 
         <TextBox Grid.Row="1"
-                 HorizontalAlignment="Center"
+                 Grid.ColumnSpan="2"
+                 HorizontalAlignment="Left"
                  VerticalAlignment="Center"
-                 Width="280"
+                 TextAlignment="Center"
+                 Width="320"
                  Height="70"
-                 FontSize="30"
+                 FontSize="24"
+                 FontWeight="ExtraBold"
                  Foreground="Black"
                  FontStyle="Italic"
-                 FontWeight="Black"
                  BorderBrush="Transparent"
                  BorderThickness="0"
                  Background="Transparent"
-                 Padding="30,0,0,0"
-                 Text="{Binding ResultGuessWord, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                 Margin="10,20,0,10"
+                 Text="{Binding ResultGuessWord, 
+                Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
 
         <StackPanel Grid.Column="1"
@@ -103,7 +107,7 @@
                      FontWeight="ExtraBlack"
                      Background="Transparent"
                      BorderThickness="0"
-                     Margin="10,20,10,10"
+                     Margin="10,25,10,10"
                      Visibility="{Binding PlayerDifficulty,
                                   Converter={StaticResource TimerTickToVisibilityConverter}}"/>
 
@@ -113,7 +117,8 @@
                  when properly aligned
             -->
             <Grid  HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
+                   VerticalAlignment="Center"
+                   Margin="0,10,0,0">
 
                 <Image Source="/Images/image1.png" 
                        Width="250"
@@ -174,6 +179,7 @@
         </StackPanel>
 
         <Button Grid.Row="2"
+                Margin="0,0,0,30"
                 Command="{Binding Path=NewGameCommand}"
                 Content="New Game"
                 HorizontalAlignment="Center"

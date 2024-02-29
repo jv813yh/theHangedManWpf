@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <Style x:Key="TitleTextBlock" TargetType="TextBlock">
             <Setter Property="FontSize" Value="55"/>
+            <Setter Property="Foreground" Value="#7e8b5e"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontStyle" Value="Italic"/>
@@ -22,7 +23,7 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="Foreground" Value="#305acf"/>
+            <Setter Property="Foreground" Value="#7e8b5e"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -52,7 +53,7 @@
                        Foreground="Red"
                        FontStyle="Italic"
                        FontWeight="Light"
-                       Margin="220,10,0,0"/>
+                       Margin="220,0,0,0"/>
             <TextBlock FontSize="24" 
                        FontWeight="Light" 
                        Foreground="Red"
@@ -69,38 +70,35 @@
 
         <StackPanel Grid.RowSpan="1"
                     Grid.ColumnSpan="2"
-                    Margin="0,300,0,0"
+                    Margin="0,270,0,0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <Border BorderBrush="#dfd2d6"
+            <Border BorderBrush="#7e8b5e"
                     BorderThickness="3"
                     HorizontalAlignment="Left"
                     Width="250"
                     CornerRadius="25">
                 <Label FontWeight="Bold"
                    FontSize="28"
-                   Foreground="#dfd2d6"
+                   Foreground="#7e8b5e"
                    Padding="6">Change difficulty</Label>
             </Border>
-            <RadioButton Foreground="#dfd2d6"
-                         Command="{Binding DifficultyCommand}"
+            <RadioButton Command="{Binding DifficultyCommand}"
                          Name="EasyRadioButton"
                          CommandParameter="Easy"
                          Style="{StaticResource DifficultyRadioButton}">Easy</RadioButton>
             <RadioButton Name="MediumRadioButton"
-                         Foreground="#dfd2d6"
                          CommandParameter="Medium"
                          Command="{Binding DifficultyCommand}"
                          Style="{StaticResource DifficultyRadioButton}">Medium</RadioButton>
             <RadioButton Name="HardRadioButton"
-                         Foreground="#dfd2d6"
                          Command="{Binding DifficultyCommand}"
                          CommandParameter="Hard"
                          Style="{StaticResource DifficultyRadioButton}">Hard</RadioButton>
         </StackPanel>
 
-        <Border BorderBrush="#dfd2d6" 
-                BorderThickness="2" 
+        <Border BorderBrush="#7e8b5e" 
+                BorderThickness="3" 
                 CornerRadius="35"
                 HorizontalAlignment="Right"
                 Grid.Column="1"
@@ -120,6 +118,7 @@
                         Command="{Binding Path=PlayGameCommand}"
                         Margin="10"/>
                 <Button Content="Rules of game" 
+                        Command="{Binding Path=RulesOfGameCommand}"
                         Margin="10"/>
                 <Button Content="Exit" 
                         Command="{Binding Path=QuickCommand}"

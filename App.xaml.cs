@@ -50,7 +50,8 @@ namespace theHangedManWpf
 
         // Create GameMenuViewModel for 
         public GameMenuViewModel CreateGameMenuViewModel()
-         => new GameMenuViewModel(new NavigationService(_navigationStore, CreateLetsPlayViewModel), _gameManager);
+         => new GameMenuViewModel(new NavigationService(_navigationStore, CreateLetsPlayViewModel), 
+             new NavigationService(_navigationStore, CreateRulesOfTheGameViewModel), _gameManager);
 
         // Create LetsPlayViewModel for 
         public LetsPlayViewModel CreateLetsPlayViewModel()
@@ -68,6 +69,9 @@ namespace theHangedManWpf
         // Create YouLostViewModel for
         public YouLostViewModel CreateYouLostViewModel()
             => new YouLostViewModel(_gameManager, new NavigationService(_navigationStore, CreateGameMenuViewModel));
+
+        public RulesOfTheGameViewModel CreateRulesOfTheGameViewModel()
+            => new RulesOfTheGameViewModel(new NavigationService(_navigationStore, CreateGameMenuViewModel));
 
     }
 }

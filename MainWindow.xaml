@@ -10,11 +10,12 @@
         
         
         Title="The Hanged Man" 
-        Height="500" Width="650"
+        Height="500" Width="700"
         AllowsTransparency="True"
         Background="Transparent"
         ResizeMode="NoResize"
         WindowStyle="None"
+        Icon="Images/hangman.ico"
         MouseDown="MainWindowMouseDown"
         WindowStartupLocation="CenterScreen">
     
@@ -35,13 +36,16 @@
             <DataTemplate DataType="{x:Type vms:YouLostViewModel}">
                 <views:YouLostView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:RulesOfTheGameViewModel}">
+                <views:RulesOfGameView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <Border CornerRadius="10" Grid.RowSpan="2">
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="#9ec0e4" Offset="0.0"/>
-                    <GradientStop Color="#c2c9c9" Offset="1.0"/>
+                    <GradientStop Color="#c2c9c9" Offset="0.0"/>
+                    <GradientStop Color="#9ec0e4" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>

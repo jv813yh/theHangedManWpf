@@ -9,9 +9,14 @@ namespace theHangedManWpf.ViewModels
     {
         private readonly GameManager _gameManager;
 
-        public string YourNotGuessedWord => _gameManager.CurrentGame.CurrentWord.GuessWord;
+        // This property is used to display the word that the player was trying to guess
+        public string YourNotGuessedWord 
+            => _gameManager.CurrentGame.CurrentWord.GuessWord;
 
+        // Command to start a new game
         public ICommand NewGameCommand { get; }
+
+        // Command to quit game
         public ICommand QuitGameCommand { get; }
 
         public YouLostViewModel(GameManager gameManager, NavigationService navigationService)

@@ -16,7 +16,7 @@ namespace theHangedManWpf.ViewModels
 
         private DispatcherTimer? _timer;
 
-        private int _remainingTime = 10;
+        private int _remainingTime = 15;
         public int RemainingTime
         {
             get => _remainingTime;
@@ -98,11 +98,7 @@ namespace theHangedManWpf.ViewModels
         {
             get => _playerDifficulty;
 
-            set
-            {
-                _playerDifficulty = value;
-               // OnPropertyChanged(nameof(PlayerDifficulty));
-            }
+            set => _playerDifficulty = value;
         }
 
         public char GuessChar { get; set; }

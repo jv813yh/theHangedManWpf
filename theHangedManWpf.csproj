@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\hangman.ico" />
     <None Remove="Images\image1.png" />
     <None Remove="Images\image10.png" />
     <None Remove="Images\image11.png" />
@@ -24,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\hangman.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\image1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

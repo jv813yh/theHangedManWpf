@@ -14,6 +14,11 @@
         public GuessedWord(string guessWord)
         {
             GuessWord = guessWord;
+
+            if(guessWord is null)
+            {
+                GuessWord = "DEFAULT";
+            }
         }
 
         public override string ToString()
