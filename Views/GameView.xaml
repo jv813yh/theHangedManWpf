@@ -89,7 +89,7 @@
                  BorderBrush="Transparent"
                  BorderThickness="0"
                  Background="Transparent"
-                 Margin="10,20,0,10"
+                 Margin="10,40,0,10"
                  Text="{Binding ResultGuessWord, 
                 Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
@@ -107,7 +107,7 @@
                      FontWeight="ExtraBlack"
                      Background="Transparent"
                      BorderThickness="0"
-                     Margin="10,25,10,10"
+                     Margin="0,25,0,0"
                      Visibility="{Binding PlayerDifficulty,
                                   Converter={StaticResource TimerTickToVisibilityConverter}}"/>
 
@@ -118,7 +118,7 @@
             -->
             <Grid  HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,10,0,0">
+                   Margin="0,20,0,0">
 
                 <Image Source="/Images/image1.png" 
                        Width="250"
@@ -179,7 +179,7 @@
         </StackPanel>
 
         <Button Grid.Row="2"
-                Margin="0,0,0,30"
+                Margin="0,10,0,30"
                 Command="{Binding Path=NewGameCommand}"
                 Content="New Game"
                 HorizontalAlignment="Center"

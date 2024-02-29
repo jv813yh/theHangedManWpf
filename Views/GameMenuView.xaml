@@ -108,15 +108,19 @@
             <StackPanel Orientation="Vertical" 
                         Width="130" Height="300">
                 <!-- Image-->
-                <Image Source="../Images/image6.png"
-                       Width="90" 
-                       Height="110"
-                       Margin="0,0,30,0"/>
+                <Border BorderBrush="#7e8b5e" 
+                        BorderThickness="2"
+                        Width="90" 
+                        Height="70">
+                    <Image Source="../Images/head.JPG" 
+                           Width="90" 
+                           Height="70"/>
+                </Border>
 
                 <!-- Buttons -->
                 <Button Content="Play" 
                         Command="{Binding Path=PlayGameCommand}"
-                        Margin="10"/>
+                        Margin="10,50,10,10"/>
                 <Button Content="Rules of game" 
                         Command="{Binding Path=RulesOfGameCommand}"
                         Margin="10"/>
