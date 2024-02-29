@@ -16,15 +16,15 @@ namespace theHangedManWpf.ViewModels
 
         private DispatcherTimer? _timer;
 
-        private int _leftTime = 10;
-        public int LeftTime
+        private int _remainingTime = 10;
+        public int RemainingTime
         {
-            get { return _leftTime; }
+            get => _remainingTime;
 
             set
             {
-                _leftTime = value;
-                OnPropertyChanged(nameof(LeftTime));
+                _remainingTime = value;
+                OnPropertyChanged(nameof(RemainingTime));
             }
         }
 
@@ -93,40 +93,22 @@ namespace theHangedManWpf.ViewModels
             }
         }
 
+        private string _playerDifficulty;
+        public string PlayerDifficulty
+        {
+            get => _playerDifficulty;
+
+            set
+            {
+                _playerDifficulty = value;
+               // OnPropertyChanged(nameof(PlayerDifficulty));
+            }
+        }
+
         public char GuessChar { get; set; }
         public ICommand GuessCommandVieModel { get; }
         public ICommand TimeTickerCommand { get; }
         public ICommand NewGameCommand { get; }
-
-
-        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-
-        private Dictionary<string, List<string>> _propertyToDictionaryErrors;
-        public bool HasErrors => _propertyToDictionaryErrors.Any();
-        public IEnumerable GetErrors(string? propertyName)
-            => _propertyToDictionaryErrors.GetValueOrDefault(propertyName, new List<string>());
-
-        private void OnErrorsChanged(string propertyName)
-            => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-
-        private void AddErrors(string propertyName, string error)
-        {
-            if(!_propertyToDictionaryErrors.ContainsKey(propertyName))
-            {
-                _propertyToDictionaryErrors.Add(propertyName, new List<string>());
-            }
-
-            _propertyToDictionaryErrors[propertyName].Add(error);
-
-            OnErrorsChanged(propertyName);
-        }
-
-        private void ClearErrors(string propertyName)
-        {
-            _propertyToDictionaryErrors.Remove(propertyName);
-
-            OnErrorsChanged(propertyName);
-        }
 
         public PlayingGameViewModel(GameManager gameManager, 
             NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService NewGameService)
@@ -153,9 +135,46 @@ namespace theHangedManWpf.ViewModels
         {
             PlayingGameViewModel returnViewModel = new PlayingGameViewModel(gameManager, winNavigationService, lostNavigationService, NewGameService);
 
+            returnViewModel.SetDifficultyForProperty();
             returnViewModel.TimeTickerCommand.Execute(null);
 
+
             return returnViewModel;
+        }
+
+        public void SetDifficultyForProperty()
+        {
+            _playerDifficulty = _gameManager.CurrentGame.PlayerDifficulty;
+        }
+
+
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+        private Dictionary<string, List<string>> _propertyToDictionaryErrors;
+        public bool HasErrors => _propertyToDictionaryErrors.Any();
+        public IEnumerable GetErrors(string? propertyName)
+            => _propertyToDictionaryErrors.GetValueOrDefault(propertyName, new List<string>());
+
+        private void OnErrorsChanged(string propertyName)
+            => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+
+        private void AddErrors(string propertyName, string error)
+        {
+            if (!_propertyToDictionaryErrors.ContainsKey(propertyName))
+            {
+                _propertyToDictionaryErrors.Add(propertyName, new List<string>());
+            }
+
+            _propertyToDictionaryErrors[propertyName].Add(error);
+
+            OnErrorsChanged(propertyName);
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            _propertyToDictionaryErrors.Remove(propertyName);
+
+            OnErrorsChanged(propertyName);
         }
     }
 }

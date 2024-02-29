@@ -11,6 +11,7 @@
 
     <UserControl.Resources>
         <converters:ErrorCountToVisibilityConverter x:Key="ErrorCountToVisibilityConverter"/>
+        <converters:TimerTickToVisibilityConverter x:Key="TimerTickToVisibilityConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -30,7 +31,7 @@
             
             <Label Content="_YOUR LETTER:"
                    Target="{Binding ElementName= GuessTextBox}"
-                   FontSize="20"
+                   FontSize="30"
                    Foreground="#305acf"
                    FontWeight="ExtraBlack"
                    Margin="15,5,5,5"/>
@@ -95,10 +96,18 @@
                     Grid.RowSpan="3"
                     Orientation="Vertical">
             <TextBox Width="80"
-                     Text="{Binding Path=LeftTime}"
+                     Text="{Binding Path=RemainingTime, Mode=OneWay}"
                      Height="50"
-                     Margin="10,10,10,10"
-                     Visibility="Visible"/>
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Foreground="Red"
+                     FontSize="30"
+                     FontWeight="ExtraBlack"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Margin="10,20,10,10"
+                     Visibility="{Binding PlayerDifficulty,
+                                  Converter={StaticResource TimerTickToVisibilityConverter}}"/>
 
             <!-- 
                  We can also use Canvas, for example, 
