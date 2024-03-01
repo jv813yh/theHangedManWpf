@@ -14,6 +14,7 @@ namespace theHangedManWpf.Services
             _createViewModel = createViewModel;
         }
 
+        // Function uses NavigationStore and function to perform navigation between View in application
         public void Navigate() 
             => _navigationStore.CurrentViewModel = _createViewModel();
     }
