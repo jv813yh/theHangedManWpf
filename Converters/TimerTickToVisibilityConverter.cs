@@ -6,7 +6,9 @@ namespace theHangedManWpf.Converters
 {
     public class TimerTickToVisibilityConverter : IValueConverter
     {
-        
+
+        // Verifies whether the difficulty is set to hard,
+        // if so it returns visibility and the timer is displayed if it is not hidden
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if(value is string difficultyPlayerString)

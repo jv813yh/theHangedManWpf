@@ -6,6 +6,7 @@ namespace theHangedManWpf.Converters
 {
     public class ErrorCountToVisibilityConverter : IValueConverter
     {
+        // Sets object visibility based on mistakes count and converterParameter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int attempLeft)
