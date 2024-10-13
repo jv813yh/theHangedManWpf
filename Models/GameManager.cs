@@ -5,21 +5,32 @@ namespace theHangedManWpf.Models
 {
     public class GameManager
     {
+        // Interface ILodingWord is used to load words from input stream
+        private readonly ILoadingWords _loadingWord;
+
+        // Dictionary with words for guessing
+        private Dictionary<int, string> GuessingWordsDictionary { get; set; }
+
+        // Current game instance
         public Game CurrentGame { get; set; }
 
-        private readonly ILoadingWord _loadingWord;
-        public Dictionary<int, string> GuessingWordsDictionary { get; set; }
+        public bool IsGameStartedValid { get; private set; } = true;
+        public string ConnectionString { get; }
 
-        public GameManager(ILoadingWord loadingWord) 
+
+        public GameManager(ILoadingWords loadingWord) 
         {
             _loadingWord = loadingWord;
+            ConnectionString = _loadingWord.ConnectionString;
         }
 
-        public static GameManager CreatingGameManager(ILoadingWord loadingWord)
+        public static GameManager CreatingGameManager(ILoadingWords loadingWord)
         {
             GameManager gameManagerReturn = new GameManager(loadingWord);
 
+            // Load words from input file
             gameManagerReturn.LoadingWords();
+            // Get random word for the game
             gameManagerReturn.StartNewGame();
 
             return gameManagerReturn;
@@ -30,40 +41,19 @@ namespace theHangedManWpf.Models
         /// </summary>
         public void StartNewGame()
         {
-            try
+            if (GuessingWordsDictionary.Count == 1)
             {
-
-                CurrentGame = new Game(null, 
-                    new GuessedWord(GuessingWordsDictionary.GetValueOrDefault(Random.Shared.Next(0, GuessingWordsDictionary.Count + 1), "default")));
+                IsGameStartedValid = false;
             }
-            catch (Exception)
-            {
 
-                MessageBox.Show("Oh no, something went wrong with word generation, please restart the game", "Error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            CurrentGame = new Game(null, 
+                new GuessedWord(GuessingWordsDictionary.GetValueOrDefault(Random.Shared.Next(0, GuessingWordsDictionary.Count + 1), "default")));
         }
 
         private void LoadingWords()
         {
-            try
-            {
-                if (_loadingWord != null)
-                {
-                    GuessingWordsDictionary = _loadingWord.GetGuessingWord();
-                } 
-                else
-                {
-                    MessageBox.Show("Problem with loading the words, please start the game again", "Error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            catch (Exception e)
-            {
 
-                MessageBox.Show(e.Message, "Error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            GuessingWordsDictionary = _loadingWord.GetGuessingWord();
         }
     }
 }

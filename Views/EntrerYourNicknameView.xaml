@@ -61,6 +61,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Content="Play"
+                IsDefault="True"
                 Grid.Row="2"/>
 
     </Grid>

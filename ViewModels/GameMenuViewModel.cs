@@ -8,6 +8,8 @@ namespace theHangedManWpf.ViewModels
 {
     public class GameMenuViewModel: ViewModelBase
     {
+        private readonly string _connectionString;
+        private bool _isGameStartedValid = true;
         private Game _game;
         public ICommand PlayGameCommand { get; }
         public ICommand RulesOfGameCommand { get; }
@@ -19,6 +21,8 @@ namespace theHangedManWpf.ViewModels
         public GameMenuViewModel(NavigationService navigationService, NavigationService rulesOfTheGameService, GameManager gameManager)
         {
             _game = gameManager.CurrentGame;
+            _isGameStartedValid = gameManager.IsGameStartedValid;
+            _connectionString = gameManager.ConnectionString;
 
             DifficultyCommand = new RelayCommand<string>(ExecuteMethod);
 
@@ -37,6 +41,14 @@ namespace theHangedManWpf.ViewModels
         {
             try
             {
+                if(!_isGameStartedValid)
+                {
+                    MessageBox.Show("Application read the input words incorrectly, the application works in crisis mode.\n" +
+                        $"Please, check the file on this path {_connectionString} \n" +
+                        "it must contain the guessed words", "Error", 
+                                               MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
                 _game.PlayerDifficulty = Convert.ToString(parameter);
 
                 OnDifficultyCommandlChanged();

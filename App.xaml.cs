@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using theHangedManWpf.Models;
 using theHangedManWpf.Services;
 using theHangedManWpf.Services.LoadingWordProviders;
@@ -12,22 +13,22 @@ namespace theHangedManWpf
     /// </summary>
     public partial class App : Application
     {
-        private readonly string _connectionString = "inputWords.txt";
-
+        private readonly string _connectionString = @"\inputWords.txt";
         private readonly NavigationStore _navigationStore;
         private readonly GameManager _gameManager;
        
 
         public App()
         {
-            _navigationStore = new NavigationStore();
-            _gameManager = GameManager.CreatingGameManager(new LoadingWord(_connectionString));
-        }
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string threeLevelsUp = Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\.."));
 
+            _navigationStore = new NavigationStore();
+            _gameManager = GameManager.CreatingGameManager(new LoadingWords(threeLevelsUp + _connectionString));
+        }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
             _navigationStore.CurrentViewModel = CreateGameMenuViewModel();
 
 
@@ -44,8 +45,11 @@ namespace theHangedManWpf
 
 
         /*
-         * Maybe a better solution is to include it in a special class, 
+         * Bbetter solution is to include it in a special class, 
          * for now in this version I keep it in the App class
+         * 
+         * In the next sw version, 
+         * I will create a special class for this purpose (IHostBuilder)
          */
 
         // Create GameMenuViewModel for 

@@ -180,8 +180,8 @@
 
         <Button Grid.Row="2"
                 Margin="0,10,0,30"
-                Command="{Binding Path=NewGameCommand}"
-                Content="New Game"
+                Command="{Binding Path=ReturnBackCommand}"
+                Content="Return "
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
     </Grid>

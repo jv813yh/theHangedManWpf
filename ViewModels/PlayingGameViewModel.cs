@@ -104,13 +104,15 @@ namespace theHangedManWpf.ViewModels
         public char GuessChar { get; set; }
         public ICommand GuessCommandVieModel { get; }
         public ICommand TimeTickerCommand { get; }
-        public ICommand NewGameCommand { get; }
+        public ICommand ReturnBackCommand { get; }
 
         public PlayingGameViewModel(GameManager gameManager, 
-            NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService NewGameService)
+            NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService newGameService)
         {
 
             _gameManager = gameManager;
+            _timer = new DispatcherTimer();
+
 
             IGameEvaluationProvider gameProvider = new GameEvaluationProvider(_gameManager, winNavigationService, lostNavigationService);
 
@@ -118,18 +120,15 @@ namespace theHangedManWpf.ViewModels
 
             _propertyToDictionaryErrors = new Dictionary<string, List<string>>();
 
-            NewGameCommand = new NewGameCommad(_gameManager, new NavigateCommand(NewGameService));
+            ReturnBackCommand = new NewGameCommad(gameManager, new NavigateCommand(newGameService), _timer);
 
             TimeTickerCommand = new TimerTickCommand(_gameManager, this, _timer ,new NavigateCommand(lostNavigationService));
-
-            MessageBox.Show($"{CurrentGuessWord}", "CurrentGuessWord", MessageBoxButton.OK);
-
         }
 
         public static PlayingGameViewModel ReturnPlayingGameViewModel(GameManager gameManager, 
-                       NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService NewGameService)
+                       NavigationService winNavigationService, NavigationService lostNavigationService, NavigationService newGameCommand)
         {
-            PlayingGameViewModel returnViewModel = new PlayingGameViewModel(gameManager, winNavigationService, lostNavigationService, NewGameService);
+            PlayingGameViewModel returnViewModel = new PlayingGameViewModel(gameManager, winNavigationService, lostNavigationService, newGameCommand);
 
             returnViewModel.SetDifficultyForProperty();
             returnViewModel.TimeTickerCommand.Execute(null);

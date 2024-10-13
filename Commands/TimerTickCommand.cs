@@ -32,14 +32,15 @@ namespace theHangedManWpf.Commands
         {
             if(_gameManager.CurrentGame.PlayerDifficulty.Contains("Hard"))
             {
-                _timer = new DispatcherTimer
-                {
-                    Interval = TimeSpan.FromSeconds(1)
-                };
-
+                _timer.Interval = TimeSpan.FromSeconds(1);
                 _timer.Tick += Timer_Tick;
                 _timer.Start();
             }
+        }
+
+        public void SetTheEndForTimer()
+        {
+            _timer.Stop();
         }
 
         // 
